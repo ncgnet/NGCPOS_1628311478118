@@ -1,0 +1,69 @@
+<!-- IMPORT MODULE DETAIL -->
+<!-- 
+
+	Module : 	Mode1List
+	
+	Links : 	
+	
+	Nesteds : 	
+				
+-->
+<!-- /IMPORT MODULE DETAIL -->
+<div ng-controller="Mode1ListController">
+	
+	<h1>Mode1List</h1>
+	
+	<!-- SEARCH FORM -->
+	<div class="well">
+	    <form name="form_search" class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Test1">Test1</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<input type="text" ng-model="search.Test1" class="form-control" name="Test1" id="Test1" >
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">
+					<label for="Test2">Test2</label>
+				</div>
+				<div class="col-sm-9 form-group" >
+					<select class="form-control" ng-model="search.Test2" name="Test2" id="Test2">
+						<option></option>
+						<option value="01">01</option>
+						<option value="02">02</option>
+						<option value="03">03</option>
+						<option value="04">04</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- TABLE -->
+	<table class="table table-condensed table-striped table-bordered table-hover">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>Test1</th>
+				<th>Test2</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="item in list | filter: {  Test1:search.Test1,  Test2:search.Test2,  }">
+				<td ng-bind="item._id" ng-link="/mode1s/{{item._id}}"></td>
+				<td ng-bind="item.Test1"></td>
+				<td ng-bind="item.Test2"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="mb-20" ng-if="list.$resolved && (list | filter :{   Test1:search.Test1,  Test2:search.Test2,  }).length == 0">
+        <b>No result found</b>
+    </div>
+
+	<!-- BUTTON -->
+	<button class="btn btn-primary" ng-link="/mode1s/new">New</button>
+	
+</div>
